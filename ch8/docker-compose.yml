@@ -1,0 +1,17 @@
+services:
+  db:
+    container_name: instagram
+    image: postgres:16
+    restart: always
+    volumes:
+      - local_db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: instagram
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: securepassword
+      PGDATA: /var/lib/postgresql/data/instagram/
+    ports:
+      - "54322:5432"
+
+volumes:
+  local_db:

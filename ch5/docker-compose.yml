@@ -1,0 +1,22 @@
+services:
+  db:
+    container_name: django_db
+    image: postgres:16
+    restart: always
+    volumes:
+      - local_db:/var/lib/postgresql/data  # volume을 통해 데이터를 저장하여 컨테이너 종료해도 데이터 유지
+    environment:
+      POSTGRES_DB: hands_on
+      POSTGRES_USER: hands_on_user
+      POSTGRES_PASSWORD: securepassword
+      PGDATA: /var/lib/postgresql/data/django_db/
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:7.4
+    container_name: django_redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  local_db:

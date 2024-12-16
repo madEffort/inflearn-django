@@ -1,0 +1,17 @@
+body {
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.content {
+    background-color: #f6f6f0;
+}
+
+ol li::marker {
+    color: #777777;
+}
+
+a {
+    color: inherit; /* 부모 요소의 색상을 상속받아 텍스트 색상 변경 */
+    text-decoration: none; /* 밑줄 제거 */
+}
