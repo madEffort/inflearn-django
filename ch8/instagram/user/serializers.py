@@ -35,7 +35,7 @@ class UserMeUpdateSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
 
 
-class FollowSerializer(serializers.ModelSerializer):
+class UserFollowReadSerializer(serializers.ModelSerializer):
     user_id = serializers.PrimaryKeyRelatedField(source="user", read_only=True)
     follower_id = serializers.PrimaryKeyRelatedField(source="follower", read_only=True)
 
@@ -44,14 +44,24 @@ class FollowSerializer(serializers.ModelSerializer):
         fields = ["id", "user_id", "follower_id", "created_at"]
 
 
-# class UserProfileSerializer(serializers.ModelSerializer):
-#     posts_count = serializers.SerializerMethodField()
-#     followers_count = serializers.SerializerMethodField()
-#     followings_count = serializers.SerializerMethodField()
-#
-#     class Meta:
-#         model = CustomUser
-#         fields = ["id", "username", "posts_count", "followers_count", "followings_count"]
-#
-#     def get_posts_count(self, obj):
-#         return obj.followers.count()
+class UserProfileSerializer(serializers.ModelSerializer):
+    posts_count = serializers.IntegerField()
+    followers_count = serializers.IntegerField()
+    followings_count = serializers.IntegerField()
+
+    # posts_count = serializers.SerializerMethodField()
+    # followers_count = serializers.SerializerMethodField()
+    # followings_count = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CustomUser
+        fields = ["id", "username", "posts_count", "followers_count", "followings_count"]
+
+    # def get_posts_count(self, obj):
+    #     return obj.posts.count()
+    #
+    # def get_followers_count(self, obj):
+    #     return obj.followers.count()
+    #
+    # def get_followings_count(self, obj):
+    #     return obj.followings.count()
